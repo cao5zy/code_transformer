@@ -11,7 +11,7 @@ class LineReaderConfig:
 	def hasGroup(self):
 		return "groupNumber" in self.__json
 
-	def getGroup(self, num):
+	def getGroupNumber(self):
 		return self.__json["groupNumber"] if self.hasGroup else None
 
 	@property
