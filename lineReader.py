@@ -1,4 +1,4 @@
-"# line reader" 
+# line reader
 import re
 
 def lineReader(content):

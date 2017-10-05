@@ -1,4 +1,4 @@
-"# lineReaderConfig" 
+# lineReaderConfig
 class LineReaderConfig:
 	def __init__(self, json):
 		self.__json = json["lineReader"];
