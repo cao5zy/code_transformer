@@ -6,8 +6,14 @@ def lineReader(content):
 	return lambda lineReaderConfig: list(filter(lambda line: line != None, map(lambda line: processLine(line, lineReaderConfig), content.splitlines())))
 
 def processLine(line, lineReaderConfig):
-	return (lambda result: result.groups()[lineReaderConfig.getGroupNumber()] \
+	def handleResultWhenHasNoGroup(result):
+		return result.group()
+	def handleResultWhenHasGroup(result):
+		print(result.groups()[0])
+		return result.groups()[lineReaderConfig.getGroupNumber()]
+
+	return (lambda result: handleResultWhenHasGroup(result)  \
 	if result and lineReaderConfig.useItWhenTrue and lineReaderConfig.hasGroup \
-	else result.groups()[0] if result and lineReaderConfig.useItWhenTrue \
+	else handleResultWhenHasNoGroup(result) if result and lineReaderConfig.useItWhenTrue \
 	else line if not (result or lineReaderConfig.useItWhenTrue) \
 	else None)(re.search(lineReaderConfig.rePattern, line))
