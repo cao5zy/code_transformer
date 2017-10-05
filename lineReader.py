@@ -9,7 +9,6 @@ def processLine(line, lineReaderConfig):
 	def handleResultWhenHasNoGroup(result):
 		return result.group()
 	def handleResultWhenHasGroup(result):
-		print(result.groups()[0])
 		return result.groups()[lineReaderConfig.getGroupNumber()]
 
 	return (lambda result: handleResultWhenHasGroup(result)  \
