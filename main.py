@@ -3,13 +3,12 @@ from jinja2 import Template
 import demjson
 
 def getParam(name)
-	dic={
+	options, args = getopt.getopt(sys.argv[1:], "t:d:f:", [])
+	return (lambda dic:[(key, val) for (key, val) in options if key == '-%s' % dic[name]][0][1])({
 		"template":"t"
 		,"defintion":"d"
 		,"file":"f"
-	}
-	options, args = getopt.getopt(sys.argv[1:], "t:d:f:", [])
-	return [(key, val) for (key, val) in options if key == '-%s' % dic[name]][0][1]
+	})
 
 def getTemplate():
 	with open(getParam('template'), 'r') as file:
