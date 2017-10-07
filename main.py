@@ -26,11 +26,15 @@ def getBindingVal():
 
 def getContentLine():
 	with open(getParam('file'), 'r') as file:
-		return lineReader(file.read())(LineReaderConfig(demjson.decode_file(getParam('defintion'))))
+		def getlines():
+			return lineReader(file.read())(LineReaderConfig(demjson.decode_file(getParam('defintion'))))
+		return getlines()
 	
 def main():
 	with open('output.txt', 'w') as file:
-		file.write(Template(getTemplate()).render(objs=getBindingVal()))
+		def getVal():
+			return getBindingVal()
+		file.write(Template(getTemplate()).render(objs=getVal()))
 
 if __name__ == '__main__':
 	main()
