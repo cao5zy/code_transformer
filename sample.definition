@@ -1,0 +1,14 @@
+{
+	"lineReader":{
+		"pattern":".*"
+	},
+	"keyBuilder":[{
+		"keyName":"title",
+		"keyPattern":"(\w+):(\w+)",
+		"groupNum": 0
+	},{
+		"keyName":"type",
+		"keyPattern":"(\w+):(\w+)",
+		"groupNum":1
+	}]
+}

@@ -1,0 +1,5 @@
+{% for obj in objs%}
+private {{obj.type}} {{obj.title}} {
+	get;set;
+}
+{% endfor %}
