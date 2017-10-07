@@ -1,10 +1,21 @@
 # key builder
+from autologging import logged
+
 import re
 def buildKey(line, keyBuilderConfigs):
 	def getKeyVal(keyBuilderConfig):
-		return (lambda result:result.groups()[keyBuilderConfig.groupNum] if result and keyBuilderConfig.hasGroup \
-		else result.group() if result \
-		else "")(re.search(keyBuilderConfig.keyPattern, line))
+		def getValueFromGroup(result):
+			return result.groups()[keyBuilderConfig.groupNum]
+		def getVal(result):
+			return result.group()
+		@logged
+		def getResult():
+			result = re.search(keyBuilderConfig.keyPattern, line)
+			getResult._log.info({"line":line, "result": result})
+			return result
+		return (lambda result: getValueFromGroup(result) if result and keyBuilderConfig.hasGroup \
+		else getVal(result) if result \
+		else "")(getResult())
 
 	def buildDic(dic, name, val):
 		dic[name] = val

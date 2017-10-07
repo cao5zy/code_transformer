@@ -7,6 +7,9 @@ from lineReader import lineReader
 from models.lineReaderConfig import LineReaderConfig
 from keyBuilder import buildKey
 from models.keyBuilderConfig import getKeyBuilderConfigs
+import logging
+
+logging.basicConfig(level=logging.INFO, stream=sys.stdout, format="%(levelname)s:%(name)s:%(funcName)s:%(message)s")
 
 def getParam(name):
 	options, args = getopt.getopt(sys.argv[1:], "t:d:f:", [])
