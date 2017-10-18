@@ -11,7 +11,7 @@ def buildKey(line, keyBuilderConfigs):
 		@logged
 		def getResult():
 			result = re.search(keyBuilderConfig.keyPattern, line)
-			getResult._log.info({"line":line, "result": result})
+			# getResult._log.info({"line":line, "result": result})
 			return result
 		return (lambda result: getValueFromGroup(result) if result and keyBuilderConfig.hasGroup \
 		else getVal(result) if result \

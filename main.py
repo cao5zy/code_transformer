@@ -28,13 +28,13 @@ def getBindingVal():
 			buildKey(line, getKeyBuilderConfigs(demjson.decode_file(getParam('defintion')))), getContentLine()))
 
 def getContentLine():
-	with open(getParam('file'), 'r') as file:
+	with open(getParam('file'), 'r', encoding='utf-8') as file:
 		def getlines():
 			return lineReader(file.read())(LineReaderConfig(demjson.decode_file(getParam('defintion'))))
 		return getlines()
 	
 def main():
-	with open('output.txt', 'w') as file:
+	with open('output.txt', 'w', encoding='utf-8') as file:
 		def getVal():
 			return getBindingVal()
 		file.write(Template(getTemplate()).render(objs=getVal()))
